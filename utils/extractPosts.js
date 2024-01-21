@@ -4,13 +4,13 @@ const extractPosts = async (input) => {
   // Create an array to hold the post details
   let posts = input.map(item => ({
     title: item.data.title,
-    selfText: item.data.selftext, // Adding selftext
+    selfText: item.data.selftext.slice(0, 500), // Adding selftext
     createdUtc: item.data.created_utc,
     permalink: item.data.permalink,
     upvoteRatio: item.data.upvote_ratio,
     score: item.data.score,
     url: item.data.url,
-    combinedAnalysis: item.data.title + ' ' + item.data.selftext, // Combine title and selftext for analysis
+    combinedAnalysis: item.data.title + ' ' + item.data.selftext.slice(0, 500), // Combine title and selftext for analysis
   }));
 
   // Combine all texts for a single analysis call
@@ -20,13 +20,13 @@ const extractPosts = async (input) => {
   try {
     const decision = await analyzePosts(combinedText)
 
-    // Associate the decision with each post
-    posts = posts.map(post => ({ ...post, decision }))
+    // Output decision
+    // console.log(decision)
+    return decision
+
   } catch (error) {
     console.error('Error during analysis:', error)
   }
-
-  return posts
 }
 
 module.exports = extractPosts

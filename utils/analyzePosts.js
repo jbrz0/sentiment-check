@@ -8,10 +8,15 @@ async function analyzePosts(posts) {
   try {
     const response = await openai.chat.completions.create({
       model: "gpt-3.5-turbo", // check model: gpt-4-1106-preview
-      messages: [{"role": "user", "content": `Determine if the following text is positive, negative, or neutral: \n\n${posts}`}],
+      messages: [
+        {
+          "role": "user", 
+          "content": `Determine if the following text is positive, negative, or neutral and summarize the combined sentiment of all items in 100-200 characters: \n\n${posts}`
+        }
+      ],
     })
 
-    console.log(response.choices, response.choices[0], response.choices[0].message.content)
+    // console.log(response.choices, response.choices[0], response.choices[0].message.content)
     return response.choices[0].message.content
 
   } catch (error) {

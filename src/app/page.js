@@ -10,7 +10,7 @@ export default function Home() {
   const [subreddit, setSubreddit] = useState()
   const [keyword, setKeyword] = useState()
   const [validate, setValidate] = useState(null)
-  const [posts, setPosts] = useState()
+  const [answer, setAnswer] = useState()
 
   const search = async (e) => {
     e.preventDefault()
@@ -26,11 +26,10 @@ export default function Home() {
     
     else {
 
-      // const server = process.env.NEXT_PUBLIC_SERVER_ROOT
-
       try {
         const response = await axios.get(`http://localhost:8080/scanner/${subreddit}/${keyword}`)
-        setPosts(response.data)
+        // console.log(response.data)
+        setAnswer(response.data)
       } 
       
       catch (error) {
@@ -68,6 +67,8 @@ export default function Home() {
             <button className={styles.button} onClick={search} type="submit">Go</button>
           </p>
         </form>
+
+        {answer ? <p className={styles.answer}>{answer}</p> : ''}
 
       </main>
     </div>
