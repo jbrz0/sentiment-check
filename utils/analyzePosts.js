@@ -11,7 +11,7 @@ async function analyzePosts(posts) {
       messages: [{"role": "user", "content": `Determine if the following text is positive, negative, or neutral: \n\n${posts}`}],
     })
 
-    // console.log(response.choices[0].message.content)
+    console.log(response.choices, response.choices[0], response.choices[0].message.content)
     return response.choices[0].message.content
 
   } catch (error) {
