@@ -10,10 +10,12 @@ export default function Home() {
   const [keyword, setKeyword] = useState()
   const [validate, setValidate] = useState(null)
   const [answer, setAnswer] = useState()
+  const [loading, setLoading] = useState(false)
 
   const search = async (e) => {
     e.preventDefault()
     setValidate(null)
+    setLoading(true)
   
     if (!subreddit) {
       setValidate('Enter a subreddit')
@@ -29,10 +31,12 @@ export default function Home() {
         const response = await axios.get(`http://localhost:8080/scanner/${subreddit}/${keyword}`)
         // console.log(response.data)
         setAnswer(response.data)
+        setLoading(false)
       } 
       
       catch (error) {
         console.error('Error fetching data:', error)
+        setLoading(false)
       }
     }
   }
@@ -58,11 +62,13 @@ export default function Home() {
             <input className={styles.code} type="text" placeholder="subreddit" onChange={(e) => setSubreddit(e.target.value)} />
             {' '} for {' '}
             <input className={styles.code} type="text" placeholder="keyword" onChange={(e) => setKeyword(e.target.value)} />
-            <button className={styles.button} onClick={search} type="submit">Go</button>
+            <button className={styles.button} onClick={search} type="submit">
+              {loading ? <div className={styles.loader}></div> : 'Go'}
+            </button>
           </p>
         </form>
 
-        {answer ? <p className={styles.answer}>{answer}</p> : ''}
+        {answer && !loading ? <p className={styles.answer}>{answer}</p> : ''}
 
         <div className={styles.os}>
           <a href="htt[s://github.com/oddscenes/sentiment-check">github</a> | <a href="https://oddscenes.com">website</a>

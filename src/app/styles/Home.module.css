@@ -71,6 +71,7 @@
   align-items: center;
   padding: 0.75rem;
   font-size: 1.1rem;
+  width: 62px;
 }
 
 .description {
@@ -137,12 +138,34 @@
   margin-left: 0.5rem;
 }
 
-/* @media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
+.loader {
+  width: 30px;
+  height: 16px;
+  position: relative;
+  margin-bottom: 5px;
+  top: 2px;
+}
+
+.loader:before {
+  content: "";
+  position: absolute;
+  border-radius: 25px;
+  box-shadow: 0 0 0 2px inset #fff;
+  /* animation: l3 0.75s infinite alternate; */
+  animation: l3 0.50s infinite alternate;
+}
+
+@keyframes l3 {
+  0% {
+    inset: 0 17px 0 0;
   }
-} */
+  50% {
+    inset: 0 0 0 0;
+  }
+  100% {
+    inset: 0 0 0 17px;
+  }
+}
 
 .answer {
   display: flex;
@@ -153,7 +176,7 @@
   border: 1px solid rgba(243, 74, 0, 0.75);
   color: rgba(0, 0, 0, 0.9);
   width: 100%;
-  max-width: 650px;
+  max-width: 670px;
 }
 
 .os {
