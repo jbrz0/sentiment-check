@@ -4,7 +4,6 @@ const axios = require('axios')
 const extractPosts = require('../utils/extractPosts')
 
 const app = express()
-require('dotenv').config()
 app.use(cors())
 
 const PORT = process.env.PORT || 8080
