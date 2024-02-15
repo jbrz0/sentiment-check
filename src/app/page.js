@@ -28,7 +28,7 @@ export default function Home() {
     else {
 
       try {
-        const response = await axios.get(`http://localhost:8080/scanner/${subreddit}/${keyword}`)
+        const response = await axios.get(`/api/scanner/${subreddit}/${keyword}`)
         // console.log(response.data)
         setAnswer(response.data)
         setLoading(false)
