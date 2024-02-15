@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
+import { usePathname } from 'next/navigation'
 import styles from './styles/Home.module.css'
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
   const [validate, setValidate] = useState(null)
   const [answer, setAnswer] = useState()
   const [loading, setLoading] = useState(false)
+
 
   const search = async (e) => {
     e.preventDefault()
@@ -28,7 +30,7 @@ export default function Home() {
     else {
 
       try {
-        const response = await axios.get(`/api/scanner/${subreddit}/${keyword}`)
+        const response = await axios.get(`${window.location.origin}/api/scanner/${subreddit}/${keyword}`)
         // console.log(response.data)
         setAnswer(response.data)
         setLoading(false)
