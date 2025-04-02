@@ -73,10 +73,7 @@ export default function Home() {
         {answer && !loading ? <p className={styles.answer}>{answer}</p> : ''}
 
         <div className={styles.os}>
-          <a href="htt[s://github.com/oddscenes/sentiment-check">github</a> | <a href="https://oddscenes.com">website</a>
-          <a href="https://oddscenes.com">
-            <img src="/os-logo.svg" />
-          </a>
+          <a href="https://x.com/jbrz0" target="_blank">@jbrz0</a>
         </div>
 
       </main>
